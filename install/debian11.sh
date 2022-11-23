@@ -35,6 +35,10 @@ bash build.sh
 cd /tmp
 rm -rf fospackv69
 
+
+
+
+
 rm -rf /home/fos-streaming/fos/www/vendor /home/fos-streaming/fos/www/50x.html
 cd /home/fos-streaming/fos/www
 git clone https://github.com/Automatisa/FOS-Streaming-v70.git .
@@ -50,8 +54,11 @@ echo '/etc/init.d/php8.0-fpm start' >> /etc/rc.local
 echo 'exit 0' >> /etc/rc.local
 
 mkdir -p /home/fos-streaming/fos/www/hl ; chmod -R 777 /home/fos-streaming/fos/www/hl; mkdir -p /home/fos-streaming/fos/www/cache; chmod -R 777 /home/fos-streaming/fos/www/cache; chown nginx:nginx /home/fos-streaming/fos/nginx/conf
-curl -s https://raw.githubusercontent.com/Automatisa/FOS-Streaming-v70/master/improvement/nginx.conf > /home/fos-streaming/fos/nginx/conf/nginx.conf
-curl -s https://raw.githubusercontent.com/Automatisa/FOS-Streaming-v70/master/improvement/php8.0.conf > /etc/php/8.0/fpm/pool.d/www.conf
+curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/nginx.conf > /home/fos-streaming/fos/nginx/conf/nginx.conf
+curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/php8.0.conf > /etc/php/8.0/fpm/pool.d/www.conf
+
+
+
 
 sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
 
@@ -72,7 +79,7 @@ ln -s /home/fos-streaming/fos/www/config.php /home/fos-streaming/fos/www1/config
 ln -s /home/fos-streaming/fos/www/functions.php /home/fos-streaming/fos/www1/functions.php
 ln -s /home/fos-streaming/fos/www/stream.php /home/fos-streaming/fos/www1/stream.php
 ln -s /home/fos-streaming/fos/www/playlist.php /home/fos-streaming/fos/www1/playlist.php
-ln -sf /etc/alternatives/php /home/fos-streaming/fos/php/bin/p
+ln -sf /etc/alternatives/php /home/fos-streaming/fos/php/bin/php
 
 service php8.0-fpm stop
 service php8.0-fpm start
