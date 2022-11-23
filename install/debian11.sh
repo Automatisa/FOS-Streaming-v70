@@ -45,12 +45,18 @@ chown -R nginx:nginx /home/fos-streaming/fos/www/*
 
 echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffmpeg' >> /etc/sudoers
 echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffprobe' >> /etc/sudoers
+
 sed --in-place '/exit 0/d' /etc/rc.local
 echo '/home/fos-streaming/fos/nginx/sbin/nginx_fos' >> /etc/rc.local
 echo '/etc/init.d/php8.0-fpm start' >> /etc/rc.local
 echo 'exit 0' >> /etc/rc.local
 
-mkdir -p /home/fos-streaming/fos/www/hl ; chmod -R 777 /home/fos-streaming/fos/www/hl; mkdir -p /home/fos-streaming/fos/www/cache; chmod -R 777 /home/fos-streaming/fos/www/cache; chown nginx:nginx /home/fos-streaming/fos/nginx/conf
+mkdir -p /home/fos-streaming/fos/www/hl
+chmod -R 777 /home/fos-streaming/fos/www/hl
+mkdir -p /home/fos-streaming/fos/www/cache
+chmod -R 777 /home/fos-streaming/fos/www/cache
+chown nginx:nginx /home/fos-streaming/fos/nginx/conf
+
 curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/nginx.conf > /home/fos-streaming/fos/nginx/conf/nginx.conf
 curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/php80.conf > /etc/php/8.0/fpm/pool.d/www.conf
 
@@ -64,10 +70,12 @@ sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
 sed -i 's/xxx/fos/g' /home/fos-streaming/fos/www/config.php
 sed -i 's/zzz/'$sqlpasswd'/g' /home/fos-streaming/fos/www/config.php
 sed -i 's/ttt/fos/g' /home/fos-streaming/fos/www/config.php
-mkdir -p /home/fos-streaming/fos/www1/;
-mkdir -p /home/fos-streaming/fos/www1/log/;
-chown nginx:nginx /home/fos-streaming/fos/www1/log/;
-cp -R /home/fos-streaming/fos/www/* /home/fos-streaming/fos/www1/;
+mkdir -p /home/fos-streaming/fos/www1/
+mkdir -p /home/fos-streaming/fos/www1/log/
+chown nginx:nginx /home/fos-streaming/fos/www1/log/
+
+
+cp -R /home/fos-streaming/fos/www/* /home/fos-streaming/fos/www1/
 rm -rf /home/fos-streaming/fos/www1/*.*
 
 rm -rf /home/fos-streaming/fos/www1/hl

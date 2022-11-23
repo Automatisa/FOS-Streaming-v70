@@ -1,5 +1,5 @@
 {
     "require": {
-        "illuminate/view": "^9.41"
+        "laravel/framework": "^9.41"
     }
 }
