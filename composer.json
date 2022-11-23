@@ -1,5 +1,5 @@
 {
     "require": {
-        "illuminate/events": "^9.41"
+        "illuminate/view": "^9.41"
     }
 }

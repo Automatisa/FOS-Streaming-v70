@@ -83,6 +83,15 @@
       ),
       'reference' => '8e534676bac23bc17925f5c74c128f9c09b98f69',
     ),
+    'illuminate/filesystem' => 
+    array (
+      'pretty_version' => 'v9.41.0',
+      'version' => '9.41.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '3e29c07c25e759a99ec09377838e3926e33d9f5f',
+    ),
     'illuminate/macroable' => 
     array (
       'pretty_version' => 'v9.41.0',
@@ -109,6 +118,15 @@
       array (
       ),
       'reference' => '7ebea783f2f97e1c9560f679888b8c757b98f86e',
+    ),
+    'illuminate/view' => 
+    array (
+      'pretty_version' => 'v9.41.0',
+      'version' => '9.41.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '951a68bbbecaa5f744bfd01e8dcdd482d0604348',
     ),
     'nesbot/carbon' => 
     array (
@@ -144,6 +162,15 @@
       ),
       'reference' => '764e0b3939f5ca87cb904f570ef9be2d78a07865',
     ),
+    'symfony/finder' => 
+    array (
+      'pretty_version' => 'v6.0.11',
+      'version' => '6.0.11.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '09cb683ba5720385ea6966e5e06be2a34f2568b1',
+    ),
     'symfony/polyfill-mbstring' => 
     array (
       'pretty_version' => 'v1.27.0',
@@ -164,21 +191,21 @@
     ),
     'symfony/translation' => 
     array (
-      'pretty_version' => 'v6.1.6',
-      'version' => '6.1.6.0',
+      'pretty_version' => 'v6.0.14',
+      'version' => '6.0.14.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e6cd330e5a072518f88d65148f3f165541807494',
+      'reference' => '6f99eb179aee4652c0a7cd7c11f2a870d904330c',
     ),
     'symfony/translation-contracts' => 
     array (
-      'pretty_version' => 'v3.1.1',
-      'version' => '3.1.1.0',
+      'pretty_version' => 'v3.0.2',
+      'version' => '3.0.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '606be0f48e05116baef052f7f3abdb345c8e02cc',
+      'reference' => 'acbfbb274e730e5a0236f619b6168d9dedb3e282',
     ),
     'symfony/translation-implementation' => 
     array (

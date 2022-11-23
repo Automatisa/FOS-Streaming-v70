@@ -5,7 +5,7 @@ apt-get install -y ca-certificates apt-transport-https lsb-release
 
 apt-get install -y man-db make m4 netcat-openbsd odbcinst1debian2 patch
 apt-get install -y pkg-config python2 python2-minimal python2.7 python2.7-minimal re2c unixodbc unixodbc-dev
-apt-get install -y uuid-dev x11-common x11proto-core-dev x11proto-input-dev x11proto-kb-dev libgeoip-dev 
+apt-get install -y uuid-dev x11-common x11proto-core-dev x11proto-input-dev x11proto-kb-dev libgeoip-dev libquadmath0 librecode-dev librecode0 librtmp-dev libsasl2-dev libsasl2-modules
 apt-get install -y po-debconf xorg-sgml-doctools xtrans-dev zlib1g-dev libjpeg-dev libgcc1 libgd-dev libpcre++-dev libxslt1-dev
 
 apt-get install -y libgtk2.0-0 libgdk-pixbuf2.0-0 libfontconfig1 libxrender1 libx11-6 libglib2.0-0  libxft2 libfreetype6 libc6 zlib1g libpng-dev
@@ -28,15 +28,12 @@ useradd nginx
 useradd -s /sbin/nologin -U -d /home/fos-streaming -m fosstreaming
 
 cd /tmp
-git clone --recurse-submodules https://github.com/Automatisa/FOS-Streaming-v70.git
-cp -a fospackv69/fos /home/fos-streaming/
-cd fospackv69/nginx-builder
+git clone --recurse-submodules https://github.com/Automatisa/fos-streaming-v70.git
+cp -a fos-streaming-v70/install/fospackv70-master/fos /home/fos-streaming/
+cd fos-streaming-v70/install/fospackv70-master/nginx-builder
 bash build.sh
 cd /tmp
-rm -rf fospackv69
-
-
-
+rm -rf fos-streaming-v70
 
 
 rm -rf /home/fos-streaming/fos/www/vendor /home/fos-streaming/fos/www/50x.html
@@ -55,7 +52,7 @@ echo 'exit 0' >> /etc/rc.local
 
 mkdir -p /home/fos-streaming/fos/www/hl ; chmod -R 777 /home/fos-streaming/fos/www/hl; mkdir -p /home/fos-streaming/fos/www/cache; chmod -R 777 /home/fos-streaming/fos/www/cache; chown nginx:nginx /home/fos-streaming/fos/nginx/conf
 curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/nginx.conf > /home/fos-streaming/fos/nginx/conf/nginx.conf
-curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/php8.0.conf > /etc/php/8.0/fpm/pool.d/www.conf
+curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/php80.conf > /etc/php/8.0/fpm/pool.d/www.conf
 
 
 

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db
+class ComposerStaticInit1535fd1e587559f914bc70cb6d174c5c
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -26,6 +26,7 @@ class ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Finder\\' => 25,
         ),
         'P' => 
         array (
@@ -34,8 +35,10 @@ class ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db
         ),
         'I' => 
         array (
+            'Illuminate\\View\\' => 16,
             'Illuminate\\Support\\' => 19,
             'Illuminate\\Pipeline\\' => 20,
+            'Illuminate\\Filesystem\\' => 22,
             'Illuminate\\Events\\' => 18,
             'Illuminate\\Contracts\\' => 21,
             'Illuminate\\Container\\' => 21,
@@ -72,6 +75,10 @@ class ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
+        'Symfony\\Component\\Finder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/finder',
+        ),
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
@@ -79,6 +86,10 @@ class ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Illuminate\\View\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/view',
         ),
         'Illuminate\\Support\\' => 
         array (
@@ -90,6 +101,10 @@ class ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db
         'Illuminate\\Pipeline\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/pipeline',
+        ),
+        'Illuminate\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/filesystem',
         ),
         'Illuminate\\Events\\' => 
         array (
@@ -129,9 +144,9 @@ class ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit95415e7c29b9ba5f3567d8b23c4669db::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1535fd1e587559f914bc70cb6d174c5c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1535fd1e587559f914bc70cb6d174c5c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit1535fd1e587559f914bc70cb6d174c5c::$classMap;
 
         }, null, ClassLoader::class);
     }
