@@ -1,0 +1,5 @@
+{
+    "require": {
+        "illuminate/events": "^9.41"
+    }
+}
