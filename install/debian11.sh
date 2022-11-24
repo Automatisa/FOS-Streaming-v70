@@ -60,6 +60,10 @@ curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/impr
 
 sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
 
+mysql -u root  -e "CREATE DATABASE fos"
+mysql -u root  -e "CREATE USER 'fos'@'localhost' IDENTIFIED BY '$sqlpasswd';"
+mysql -u root  -e "GRANT ALL PRIVILEGES ON fos.* TO 'fos'@'localhost';"
+mysql -u root  -e "FLUSH PRIVILEGES;"
 
 
 sed -i 's/xxx/fos/g' /home/fos-streaming/fos/www/config.php
@@ -84,5 +88,6 @@ ln -sf /etc/alternatives/php /home/fos-streaming/fos/php/bin/php
 service php7.4-fpm stop
 service php7.4-fpm start
 /home/fos-streaming/fos/nginx/sbin/nginx_fos
+curl -s http://127.0.0.1:7777/install_database_tables.php?install
 curl -s http://127.0.0.1:7777/install_database_tables.php?install
 curl -s http://127.0.0.1:7777/install_database_tables.php?update
