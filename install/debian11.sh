@@ -14,15 +14,15 @@ wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
 apt update
 
-apt install -y php8.0 php8.0-cgi php8.0-bcmath php8.0-bz2 php8.0-cli php8.0-common php8.0-curl php8.0-dba php8.0-dev php8.0-enchant php8.0-fpm php8.0-gd php8.0-gmp php8.0-imap php8.0-interbase php8.0-intl php8.0-ldap php8.0-mbstring php8.0-mysql php8.0-odbc php8.0-opcache php8.0-pgsql php8.0-phpdbg php8.0-pspell php8.0-readline  php8.0-snmp php8.0-soap php8.0-sqlite3 php8.0-sybase php8.0-tidy php8.0-xml php8.0-xmlrpc php8.0-xsl php8.0-zip
+apt install -y php7.4 php7.4-cgi php7.4-bcmath php7.4-bz2 php7.4-cli php7.4-common php7.4-curl php7.4-dba php7.4-dev php7.4-enchant php7.4-fpm php7.4-gd php7.4-gmp php7.4-imap php7.4-interbase php7.4-intl php7.4-ldap php7.4-mbstring php7.4-mysql php7.4-odbc php7.4-opcache php7.4-pgsql php7.4-phpdbg php7.4-pspell php7.4-readline  php7.4-snmp php7.4-soap php7.4-sqlite3 php7.4-sybase php7.4-tidy php7.4-xml php7.4-xmlrpc php7.4-xsl php7.4-zip
 
-ex -sc '%s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g|x' /etc/php/8.0/fpm/php.ini
-ex -sc '%s/output_buffering = 4096/output_buffering = Off/g|x' /etc/php/8.0/fpm/php.ini
-perl -pi -e 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/8.0/fpm/php.ini
-perl -pi -e 's/;error_log = syslog/error_log = php_error.log/g' /etc/php/8.0/fpm/php.ini
-perl -pi -e 's/;date.timezone =/date.timezone = UTC/g' /etc/php/8.0/fpm/php.ini
+ex -sc '%s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g|x' /etc/php/7.4/fpm/php.ini
+ex -sc '%s/output_buffering = 4096/output_buffering = Off/g|x' /etc/php/7.4/fpm/php.ini
+perl -pi -e 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.4/fpm/php.ini
+perl -pi -e 's/;error_log = syslog/error_log = php_error.log/g' /etc/php/7.4/fpm/php.ini
+perl -pi -e 's/;date.timezone =/date.timezone = UTC/g' /etc/php/7.4/fpm/php.ini
 
-service php8.0-fpm restart
+service php7.4-fpm restart
 apt-get autoremove -y
 useradd nginx
 useradd -s /sbin/nologin -U -d /home/fos-streaming -m fosstreaming
@@ -46,11 +46,6 @@ chown -R nginx:nginx /home/fos-streaming/fos/www/*
 echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffmpeg' >> /etc/sudoers
 echo 'nginx ALL = (root) NOPASSWD: /usr/bin/ffprobe' >> /etc/sudoers
 
-sed --in-place '/exit 0/d' /etc/rc.local
-echo '/home/fos-streaming/fos/nginx/sbin/nginx_fos' >> /etc/rc.local
-echo '/etc/init.d/php8.0-fpm start' >> /etc/rc.local
-echo 'exit 0' >> /etc/rc.local
-
 mkdir -p /home/fos-streaming/fos/www/hl
 chmod -R 777 /home/fos-streaming/fos/www/hl
 mkdir -p /home/fos-streaming/fos/www/cache
@@ -58,7 +53,7 @@ chmod -R 777 /home/fos-streaming/fos/www/cache
 chown nginx:nginx /home/fos-streaming/fos/nginx/conf
 
 curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/nginx.conf > /home/fos-streaming/fos/nginx/conf/nginx.conf
-curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/php80.conf > /etc/php/8.0/fpm/pool.d/www.conf
+curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/php80.conf > /etc/php/7.4/fpm/pool.d/www.conf
 
 
 
@@ -86,8 +81,8 @@ ln -s /home/fos-streaming/fos/www/stream.php /home/fos-streaming/fos/www1/stream
 ln -s /home/fos-streaming/fos/www/playlist.php /home/fos-streaming/fos/www1/playlist.php
 ln -sf /etc/alternatives/php /home/fos-streaming/fos/php/bin/php
 
-service php8.0-fpm stop
-service php8.0-fpm start
+service php7.4-fpm stop
+service php7.4-fpm start
 /home/fos-streaming/fos/nginx/sbin/nginx_fos
 curl -s http://127.0.0.1:7777/install_database_tables.php?install
 curl -s http://127.0.0.1:7777/install_database_tables.php?update
