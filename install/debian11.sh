@@ -53,7 +53,7 @@ chmod -R 777 /home/fos-streaming/fos/www/cache
 chown nginx:nginx /home/fos-streaming/fos/nginx/conf
 
 curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/nginx.conf > /home/fos-streaming/fos/nginx/conf/nginx.conf
-curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/php80.conf > /etc/php/7.4/fpm/pool.d/www.conf
+curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/php74.conf > /etc/php/7.4/fpm/pool.d/www.conf
 
 
 
