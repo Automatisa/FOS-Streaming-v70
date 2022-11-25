@@ -1,6 +1,17 @@
 #!/bin/bash
 apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y
-apt-get install build-essential libssl-dev curl nano wget zip unzip git lsof iftop htop vim ffmpeg -y
+echo "`date +%s | sha256sum | base64 | head -c 32 ; echo`" > /root/MYSQL_ROOT_PASSWORD
+
+
+apt-get install -y mariadb-server mariadb-client
+systemctl start mariadb.service
+systemctl restart mariadb.service
+
+
+
+
+
+apt-get install -y build-essential libssl-dev curl nano wget zip unzip git lsof iftop htop vim ffmpeg -y
 apt-get install -y ca-certificates apt-transport-https lsb-release 
 
 apt-get install -y man-db make m4 netcat-openbsd odbcinst1debian2 patch
@@ -88,6 +99,5 @@ ln -sf /etc/alternatives/php /home/fos-streaming/fos/php/bin/php
 service php7.4-fpm stop
 service php7.4-fpm start
 /home/fos-streaming/fos/nginx/sbin/nginx_fos
-curl -s http://127.0.0.1:7777/install_database_tables.php?install
 curl -s http://127.0.0.1:7777/install_database_tables.php?install
 curl -s http://127.0.0.1:7777/install_database_tables.php?update
