@@ -17,12 +17,16 @@ if (isset($_POST['submit'])) {
 
     $user->username = $_POST['username'];
     $user->password = $_POST['password'];
-    $user->exp_date = $_POST['expdate'];
+    if (isset($_POST['expdate'])){
+		if ($_POST['expdate']  !== '0000-00-00'){
+			
+		$user->exp_date = $_POST['expdate'];
+		$user->exp_date = Carbon::parse($_POST['expdate']);
+		}
+    }
     $user->max_connections = $_POST['limit'];
 
-    if ($_POST['expdate']) {
-        $user->exp_date = Carbon::parse($_POST['expdate']);
-    }
+
 
 
     $user->active = 0;

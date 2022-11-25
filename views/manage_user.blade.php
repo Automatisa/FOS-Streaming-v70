@@ -35,8 +35,8 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Exp date</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="expdate" id="expdate" class="date-picker form-control col-md-7 col-xs-12" id="date01" placeholder="0000-00-00" value="{{  isset($_POST['expdate']) ?  $_POST['expdate'] : $user->exp_date }}">
-                                    <span class="help-inline">Unlimited? 0000-00-00 or Leave blank</span>
+                                    <input type="text" name="expdate" id="expdate" class="date-picker form-control col-md-7 col-xs-12" id="date01" placeholder="" value="{{  isset($_POST['expdate']) ?  $_POST['expdate'] : $user->exp_date ? $user->exp_date : "" }}">
+                                    <span class="help-inline">Unlimited? Leave blank</span>
 
                                 </div>
                             </div>

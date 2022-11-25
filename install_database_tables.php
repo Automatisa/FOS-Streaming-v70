@@ -5,7 +5,7 @@ include('config.php');
 
 $db = $capsule;
 if (isset($_GET['install'])) {
-
+ echo "instalamos <br>" . PHP_EOL;
     $arraynamesexist = [];
     $tables = $capsule::select('SHOW TABLES');
     foreach ($tables as $key => $val) {
@@ -81,14 +81,24 @@ if (isset($_GET['install'])) {
             $table->string('ffmpeg_path')->default('/usr/local/bin/ffmpeg');
             $table->string('ffprobe_path')->default('/usr/local/bin/ffprobe');
             $table->string('webport')->default('8000');
-            $table->string('webip');
-            $table->string('logourl');
+            $table->string('webip')->nullable(true);
+            $table->string('logourl')->default(' ');
             $table->string('hlsfolder')->default('hl');
             $table->string('user_agent')->default('FOS-Streaming');
             $table->timestamps();
         });
 
         echo "created settings table <br>" . PHP_EOL;
+        $profile = new Setting();
+        $profile->ffmpeg_path = '/usr/local/bin/ffmpeg';
+        $profile->ffprobe_path = '/usr/local/bin/ffprobe';
+        $profile->webport = '8000';
+        $profile->hlsfolder = 'hl';
+        $profile->logourl = ' ';
+        $profile->user_agent = 'FOS-Streaming';
+        $profile->save();
+
+
     }
 
 
@@ -100,18 +110,18 @@ if (isset($_GET['install'])) {
             $table->string('streamurl');
             $table->string('streamurl2');
             $table->string('streamurl3');
-            $table->tinyInteger('running');
-            $table->tinyInteger('status');
-            $table->integer('cat_id');
-            $table->integer('trans_id');
-            $table->integer('pid');
-            $table->tinyInteger('restream');
-            $table->string('video_codec_name');
-            $table->string('audio_codec_name');
-            $table->tinyInteger('bitstreamfilter');
-            $table->tinyInteger('checker');
-            $table->string('logo');
-            $table->string('tvid');
+            $table->tinyInteger('running')->nullable(true);
+            $table->tinyInteger('status')->nullable(true);
+            $table->integer('cat_id')->nullable(true);
+            $table->integer('trans_id')->nullable(true);
+            $table->integer('pid')->nullable(true);
+            $table->tinyInteger('restream')->nullable(true);
+            $table->string('video_codec_name')->nullable(true);
+            $table->string('audio_codec_name')->nullable(true);
+            $table->tinyInteger('bitstreamfilter')->nullable(true);
+            $table->tinyInteger('checker')->nullable(true);
+            $table->string('logo')->nullable(true);
+            $table->string('tvid')->nullable(true);
             $table->timestamps();
         });
         echo "created streams table <br>" . PHP_EOL;
@@ -124,10 +134,10 @@ if (isset($_GET['install'])) {
             $table->string('username')->unique();
             $table->string('password');
             $table->tinyInteger('active');
-            $table->string('lastconnected_ip');
-            $table->date('exp_date');
-            $table->integer('last_stream');
-            $table->string('useragent');
+            $table->string('lastconnected_ip')->nullable(true);
+            $table->date('exp_date')->default(NULL)->nullable(true);
+            $table->integer('last_stream')->nullable(true);
+            $table->string('useragent')->nullable(true);
             $table->integer('max_connections')->default('1');
             $table->timestamps();
         });
@@ -147,21 +157,21 @@ if (isset($_GET['install'])) {
             $table->BigInteger('analyzeduration');
             $table->string('video_codec');
             $table->string('audio_codec');
-            $table->string('profile');
-            $table->string('preset_values');
-            $table->string('scale');
-            $table->string('aspect_ratio');
-            $table->BigInteger('video_bitrate');
-            $table->integer('audio_channel');
-            $table->BigInteger('audio_bitrate');
-            $table->integer('fps');
-            $table->integer('minrate');
-            $table->integer('maxrate');
-            $table->integer('bufsize');
-            $table->integer('audio_sampling_rate');
-            $table->integer('crf');
-            $table->integer('threads');
-            $table->tinyInteger('deinterlance');
+            $table->string('profile')->default('');
+            $table->string('preset_values')->default('');
+            $table->string('scale')->default('');
+            $table->string('aspect_ratio')->default('');
+            $table->BigInteger('video_bitrate')->default('1500');
+            $table->integer('audio_channel')->default('0');
+            $table->BigInteger('audio_bitrate')->default('0');
+            $table->integer('fps')->default('25');
+            $table->integer('minrate')->default('200');
+            $table->integer('maxrate')->default('2000');
+            $table->integer('bufsize')->default('1200');
+            $table->integer('audio_sampling_rate')->default('0');
+            $table->integer('crf')->default('23');
+            $table->integer('threads')->default('0');
+            $table->tinyInteger('deinterlance')->default('1');
             $table->timestamps();
         });
 
@@ -260,7 +270,7 @@ if (isset($_GET['update'])) {
 
     $db->schema()->table('settings', function ($table) use ($db) {
         $db->schema()->hasColumn('settings', 'less_secure') ? '' : $table->tinyInteger('less_secure');
-        $db->schema()->hasColumn('settings', 'user_agent') ? '' : $table->string('user_agent')->default('FOS-Streaming');
+        $db->schema()->hasColumn('settings', 'user_agent') ? '' : $table->string('user_agent')->default('FOS-Streaming')->nullable(false)->change();
     });
 
     echo "update <br>" . PHP_EOL;
