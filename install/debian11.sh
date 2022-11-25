@@ -101,3 +101,4 @@ service php7.4-fpm start
 /home/fos-streaming/fos/nginx/sbin/nginx_fos
 curl -s http://127.0.0.1:7777/install_database_tables.php?install
 curl -s http://127.0.0.1:7777/install_database_tables.php?update
+crontab -e */2 * * * * /usr/bin/php /home/fos-streaming/fos/www/cron.php

@@ -90,8 +90,8 @@ if (isset($_GET['install'])) {
 
         echo "created settings table <br>" . PHP_EOL;
         $profile = new Setting();
-        $profile->ffmpeg_path = '/usr/local/bin/ffmpeg';
-        $profile->ffprobe_path = '/usr/local/bin/ffprobe';
+        $profile->ffmpeg_path = '/usr/bin/ffmpeg';
+        $profile->ffprobe_path = '/usr/bin/ffprobe';
         $profile->webport = '8000';
         $profile->hlsfolder = 'hl';
         $profile->logourl = ' ';
@@ -114,7 +114,7 @@ if (isset($_GET['install'])) {
             $table->tinyInteger('status')->nullable(true);
             $table->integer('cat_id')->nullable(true);
             $table->integer('trans_id')->nullable(true);
-            $table->integer('pid')->nullable(true);
+            $table->integer('pid')->default(0)->nullable(true);
             $table->tinyInteger('restream')->nullable(true);
             $table->string('video_codec_name')->nullable(true);
             $table->string('audio_codec_name')->nullable(true);

@@ -82,7 +82,8 @@
                                             @if($stream->status == 1)
                                                 <a class="btn btn-danger" title="STOP STREAM" href="streams.php?stop={{ $stream->id }}">Stop</a>
                                             @elseif ($stream->status != 1)
-                                                <a class="btn btn-success" title="START STREAM" href="streams.php?start={{ $stream->id }}">Start</a>
+                                                
+                                                <a class="btn btn-success" title="START STREAM" href="./streams.php?start_one={{ $stream->id }}">Start</a>
                                             @endif
 
                                             <a class="btn btn-info" href="manage_stream.php?id={{ $stream->id }}" title="Edit">
