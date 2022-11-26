@@ -98,3 +98,4 @@ service php7.4-fpm start
 curl -s http://127.0.0.1:7777/install_database_tables.php?install
 curl -s http://127.0.0.1:7777/install_database_tables.php?update
 crontab -e */2 * * * * /usr/bin/php /home/fos-streaming/fos/www/cron.php
+rm -rf /home/fos-streaming/fos/www/install_database_tables.php
