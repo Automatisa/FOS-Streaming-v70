@@ -6,7 +6,14 @@ echo "`date +%s | sha256sum | base64 | head -c 32 ; echo`" > /root/MYSQL_ROOT_PA
 apt-get install -y mariadb-server mariadb-client
 systemctl start mariadb.service
 systemctl restart mariadb.service
+sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
 
+mysql -u root  -e "CREATE DATABASE fos"
+mysql -u root  -e "CREATE USER 'fos'@'localhost' IDENTIFIED BY '$sqlpasswd';"
+mysql -u root  -e "GRANT ALL PRIVILEGES ON fos.* TO 'fos'@'localhost';"
+mysql -u root  -e "CREATE USER 'fos_dev'@'%' IDENTIFIED BY '$sqlpasswd';"
+mysql -u root  -e "GRANT ALL ON fos.* TO fos_dev@'%' IDENTIFIED BY '$sqlpasswd';"
+mysql -u root  -e "FLUSH PRIVILEGES;"
 
 
 
@@ -65,17 +72,6 @@ chown nginx:nginx /home/fos-streaming/fos/nginx/conf
 
 curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/nginx.conf > /home/fos-streaming/fos/nginx/conf/nginx.conf
 curl -s https://raw.githubusercontent.com/Automatisa/fos-streaming-v70/main/improvement/php74.conf > /etc/php/7.4/fpm/pool.d/www.conf
-
-
-
-
-sqlpasswd=(`cat /root/MYSQL_ROOT_PASSWORD`);
-
-mysql -u root  -e "CREATE DATABASE fos"
-mysql -u root  -e "CREATE USER 'fos'@'localhost' IDENTIFIED BY '$sqlpasswd';"
-mysql -u root  -e "GRANT ALL PRIVILEGES ON fos.* TO 'fos'@'localhost';"
-mysql -u root  -e "FLUSH PRIVILEGES;"
-
 
 sed -i 's/xxx/fos/g' /home/fos-streaming/fos/www/config.php
 sed -i 's/zzz/'$sqlpasswd'/g' /home/fos-streaming/fos/www/config.php

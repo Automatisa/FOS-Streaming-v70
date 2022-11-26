@@ -110,11 +110,11 @@ if (isset($_GET['install'])) {
             $table->string('streamurl');
             $table->string('streamurl2');
             $table->string('streamurl3');
-            $table->tinyInteger('running')->nullable(true);
-            $table->tinyInteger('status')->nullable(true);
+            $table->tinyInteger('running')->default(0)->nullable(true);
+            $table->tinyInteger('status')->default(0)->nullable(true);
             $table->integer('cat_id')->nullable(true);
             $table->integer('trans_id')->nullable(true);
-            $table->integer('pid')->default(0)->nullable(true);
+            $table->integer('pid')->default(NULL)->nullable(true);
             $table->tinyInteger('restream')->nullable(true);
             $table->string('video_codec_name')->nullable(true);
             $table->string('audio_codec_name')->nullable(true);
